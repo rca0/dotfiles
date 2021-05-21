@@ -5,4 +5,4 @@ Using dotfiles for everyday needs
 # Support
 
 - MacOS X
-- Fedora Linux
+- Fedora Linux 34
