@@ -1,0 +1,32 @@
+#!/bin/bash
+
+MERGE_REQUEST_ID="$1"
+
+set -e
+
+function usage() {
+    cat <<EOF
+Usage:
+  git mr-squash [merge request id]
+
+ex:
+  git mr-squash 1024
+EOF
+}
+
+if [ "$MERGE_REQUEST_ID" == "" ]; then
+    usage
+    exit 1
+elif [ "$MERGE_REQUEST_ID" == "-h" -o "$MERGE_REQUEST_ID" == "--help" ]; then
+    usage
+    exit 0
+fi
+
+BRANCH_NAME="mr-${MERGE_REQUEST_ID}"
+
+git fetch origin "merge-requests/${MERGE_REQUEST_ID}/head:${BRANCH_NAME}"
+author=$(git --no-pager show -s --format='%an <%ae>' "${BRANCH_NAME}")
+git merge --squash "${BRANCH_NAME}"
+git commit
+git commit -C HEAD --amend --author "$author"
+git branch -D "${BRANCH_NAME}"

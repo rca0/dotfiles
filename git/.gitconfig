@@ -1,0 +1,10 @@
+[include]
+  path = ~/.gitconfig.lib
+[user]
+	name = Ruan Arcega
+	email = ruanarcega@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

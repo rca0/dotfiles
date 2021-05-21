@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+#
+# Fetch branches that match parameter
+#
+#
+# Examples
+#
+#   git get core/
+#
+
+set -x
+spec="$1"
+i=$((${#spec}-1))
+if [ "${spec:$i:1}" == "/" ]; then
+    spec="${spec}*"
+fi
+if [ "$spec" == "" ]; then
+    echo "missing branch name parameter"
+    exit 1
+fi
+
+upstream=0
+git_remotes=($(git remote))
+for git_remote in "${git_remotes[@]}"; do
+    if [ "$git_remote" == "upstream" ]; then
+        upstream=1
+    fi
+done
+
+function add_refspec() {
+    refspec="$1"
+    git config --get-all remote.origin.fetch | grep -Fq "$refspec"
+    ret=$?
+    if [ $ret -ne 0 ]; then
+        git config --add remote.origin.fetch "$refspec"
+    fi
+}
+
+add_refspec "refs/heads/${spec}:refs/remotes/origin/${spec}"
+if [ $upstream -eq 1 ]; then
+    add_refspec "refs/heads/${spec}:refs/remotes/upstream/${spec}"
+fi
+git fetch --all --prune

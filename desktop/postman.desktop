@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Name=Postman
+Exec=/var/lib/snapd/snap/bin/postman --profile-directory=Default --app-id=postman
+Icon=/home/ruan.arcega/.local/share/icons/postman.png

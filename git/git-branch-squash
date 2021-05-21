@@ -1,0 +1,52 @@
+#!/bin/bash
+
+BRANCH_NAME="$1"
+
+set -e
+
+function usage() {
+    cat <<EOF
+Usage:
+  git branch-squash [branch name]
+  git branch-squash --self [base branch]
+
+ex:
+  git branch-squash shiny-feature
+  git branch-squash --self master
+EOF
+}
+
+if [ "$BRANCH_NAME" == "master" ]; then
+    usage
+    exit 1
+elif [ "$BRANCH_NAME" == "--self" ]; then
+    BASE_BRANCH="$2"
+    if [ "$BASE_BRANCH" == "" ]; then
+        usage
+        exit 1
+    fi
+
+    BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+elif [ "$BRANCH_NAME" == "-h" -o "$BRANCH_NAME" == "--help" ]; then
+    usage
+    exit 0
+fi
+
+
+author=$(git --no-pager show -s --format='%an <%ae>' "${BRANCH_NAME}")
+if [ "$BASE_BRANCH" != "" ]; then
+    git checkout "$BASE_BRANCH"
+    git checkout -b "tmp-${BRANCH_NAME}"
+fi
+
+git merge --squash "${BRANCH_NAME}"
+git commit
+git commit -C HEAD --amend --author "$author"
+
+if [ "$BASE_BRANCH" == "" ]; then
+    git branch -D "$BRANCH_NAME"
+else
+    git branch -D "${BRANCH_NAME}"
+    git checkout -B "${BRANCH_NAME}"
+    git branch -D "tmp-${BRANCH_NAME}"
+fi

@@ -1,0 +1,100 @@
+[apply]
+whitespace = nowarn
+
+[branch]
+autosetupmerge = true
+
+[push]
+default = simple
+
+[core]
+autocrlf = false
+editor = vim
+excludesfile = ~/.gitignore
+
+[advice]
+statusHints = false
+
+[diff]
+mnemonicprefix = true
+algorithm = patience
+
+[filter "lfs"]
+clean = git-lfs clean %f
+smudge = git-lfs smudge %f
+required = true
+
+[credential]
+helper = cache --timeout=86400
+
+[color]
+ui = true
+
+[color "branch"]
+current = yellow reverse
+local = yellow
+remote = green
+
+[color "diff"]
+meta = yellow bold
+frag = magenta bold
+old = red
+new = green
+
+[alias]
+cl = clone --single-branch
+a = add
+c = commit
+cm = commit -m
+amend = commit --amend
+ammend = commit --amend
+squash = merge --squash
+
+unstage = reset HEAD
+purge = reset --hard HEAD
+uncommit = reset --soft HEAD^
+
+co = checkout
+cp = cherry-pick -x
+b = !legit sprout
+bn = !legit sprout
+bd = branch -d
+br = branch -m
+bco = branch-clean-old
+branch-new = !legit sprout
+branch-delete = branch -d
+branch-rename = branch -m
+
+d = diff
+dc = diff --cached
+lt = log-tree
+ll = log-linear
+
+s = status
+st = status
+stat = status
+
+t = tag
+
+pl = pull
+ps = push
+rc = rebase --continue
+rs = rebase --skip
+r = remote -v
+
+fmr = fetch-merge-request
+fpr = fetch-pull-request
+
+ss = stash
+sl = stash list
+sa = stash apply
+sd = stash drop
+
+branches = !legit branches
+graft = !legit graft
+harvest = !legit harvest
+unpublish = !legit unpublish
+sprout = !legit sprout
+sync = !legit sync
+switch = !legit switch
+resync = !legit resync

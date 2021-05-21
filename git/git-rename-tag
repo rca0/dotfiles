@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#
+# Rename a tag locally and on the origin remote.
+#
+#
+# $1 - Name of the original tag.
+# $2 - Name of the new tag.
+#
+# Examples
+#
+#   git rename 1.0.0 v1.0.0
+#
+
+old=$1
+new=$2
+
+test -z $old && echo "old tag name required." 1>&2 && exit 1
+test -z $new && echo "new tag name required." 1>&2 && exit 1
+
+git tag $new $old
+git tag -d $old
+git push origin $new
+git push origin :refs/tags/$old

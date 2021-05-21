@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#
+# Fetch branches that match parameter
+#
+#
+# Examples
+#
+#   git get core/
+#
+
+set -e
+BRANCH="$1"
+if [ "$BRANCH" == "" ]; then
+    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+fi
+
+git push -u origin "${BRANCH}:${BRANCH}"

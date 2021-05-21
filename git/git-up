@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+#
+# Updates the local master.
+# If the upstream remote is present, updates the local master with the
+# upstream master.
+#
+#
+# Examples
+#
+#   git up
+#
+
+set -e
+upstream=0
+git_remotes=($(git remote))
+
+function pull_changes {
+    git fetch --all --prune
+    git pull --prune --rebase
+    if [ $upstream -eq 1 ]; then
+        git fetch upstream
+        if [ "$(git rev-parse --abbrev-ref HEAD)" == "master" ]; then
+            git merge --ff-only upstream/master
+        fi
+    fi
+    git submodule update --init --recursive
+}
+
+for git_remote in "${git_remotes[@]}"; do
+    if [ "$git_remote" == "upstream" ]; then
+        upstream=1
+    fi
+done
+
+set +e
+git diff-index --quiet HEAD --
+changes=$?
+set -e
+[ $changes -ne 0 ] && git stash -q
+
+pull_changes
+if [ $changes -ne 0 ]; then
+    git stash apply -q
+    git stash drop -q
+fi

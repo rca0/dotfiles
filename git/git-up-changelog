@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf .tmp.CHANGELOG.md
+
+head -n2 CHANGELOG.md > .tmp.CHANGELOG.md
+git changelog >> .tmp.CHANGELOG.md
+tail -n +2 CHANGELOG.md >> .tmp.CHANGELOG.md
+
+mv .tmp.CHANGELOG.md CHANGELOG.md

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# reset environment variables that could interfere with normal usage
+export GREP_OPTIONS=
+# put all utility functions here
+
+git fetch --all -p
+branches=($(git branch -vv | \
+    grep ": gone]" | \
+    tr -s ' ' | \
+    cut -d ' ' -f2))
+
+if [ "${branches[*]}" == "" ]; then
+    echo "No branches need cleanup"
+    exit 0
+fi
+
+echo "${branches[@]}" | xargs -n 1 git branch -D

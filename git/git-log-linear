@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#
+# Show linear commit log.
+#
+#
+# Examples
+#
+#   git log-linear
+#
+
+git log -150 --graph --oneline --decorate --first-parent

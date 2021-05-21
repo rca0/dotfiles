@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#
+# Show the detailed commit tree with all commits.
+#
+#
+# Examples
+#
+#   git log-tree
+#
+
+git log -150 --graph --oneline --decorate --all

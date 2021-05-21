@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#
+# Push all branches that exist locally and remotelly to origin remote, and push all local tags
+# to origin remote.
+#
+#
+# Examples
+#
+#   git push-all
+#
+
+git push origin :
+git push origin --tags

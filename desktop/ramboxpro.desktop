@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Name=Ramboxpro
+Exec=/var/lib/snapd/snap/bin/ramboxpro --profile-directory=Default --app-id=ramboxpro
+Icon=/home/ruan.arcega/.local/share/icons/ramboxpro.png

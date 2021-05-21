@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#
+# Clear remote branches that match the spec
+#
+#
+# Examples
+#
+#   git clear core/
+#
+
+root_dir=$(git rev-parse --show-toplevel)
+spec="$1"
+if [ "$spec" == "" ]; then
+    echo "missing branch name parameter"
+    exit 1
+fi
+
+upstream=0
+git_remotes=($(git remote))
+for git_remote in "${git_remotes[@]}"; do
+    if [ "$git_remote" == "upstream" ]; then
+        upstream=1
+    fi
+done
+
+function remove_refspec() {
+    remote="$1"
+    raw_spec="$2"
+    i=$((${#raw_spec}-1))
+    if [ "${raw_spec:$i:1}" == "/" ]; then
+        re_spec="${raw_spec}\*"
+        spec="${raw_spec}*"
+    fi
+
+    refspec="refs/heads/${spec}:refs/remotes/${remote}/${spec}"
+    re_refspec="refs/heads/${re_spec}:refs/remotes/${remote}/${re_spec}"
+    git config --get-all "remote.${remote}.fetch" | grep -Fq "$refspec"
+    ret=$?
+    if [ $ret -eq 0 ]; then
+        rm -rf "${root_dir}/.git/refs/remotes/${remote}/${raw_spec}"
+        git config --unset "remote.${remote}.fetch" "$re_refspec"
+    fi
+}
+
+set -x
+remove_refspec origin "$spec"
+if [ $upstream -eq 1 ]; then
+    remove_refspec upstream "$spec"
+fi
