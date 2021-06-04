@@ -1,6 +1,7 @@
 ansible
 code
 docker
+docker-compose
 elixir
 g++
 golang-bin
