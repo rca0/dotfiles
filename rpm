@@ -13,6 +13,7 @@ npm
 pre-commit
 remmina
 slack
+session-manager-plugin
 terminator
 unrar
 util-linux-user
