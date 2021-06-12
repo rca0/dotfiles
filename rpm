@@ -19,3 +19,7 @@ unrar
 util-linux-user
 vlc
 zsh
+bzip2-devel
+bzip2
+python3.7
+python3.8
