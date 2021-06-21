@@ -25,6 +25,10 @@ function _setup_linux() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
 
+  mkdir -p ~/franz
+  wget -O ~/franz/Franz.AppImage https://github.com/meetfranz/franz/releases/download/v5.7.0/Franz-5.7.0.AppImage
+  chmod +x ~/franz/Franz.AppImage
+
   if test "$(which docker)"; then
     sudo groupadd docker
     sudo usermod -aG docker $USER

@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Name=Franz
+Exec=/home/ruan.arcega/franz/Franz.AppImage --profile-directory=Default --app-id=franz
+Icon=/home/ruan.arcega/.local/share/icons/franz.png
