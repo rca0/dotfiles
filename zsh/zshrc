@@ -10,6 +10,9 @@ export LC_ALL=en_US.UTF-8
 # Asdf settings
 source $HOME/.asdf/asdf.sh
 
+# fzf auto complete
+export FZF_BASE="$HOME/.fzf"
+
 # git scripts
 export PATH="$PATH:$HOME/.git"
 
@@ -19,7 +22,7 @@ export PATH="$PATH:$HOME/.git"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(git, fzf)
 
 source $ZSH/oh-my-zsh.sh
 

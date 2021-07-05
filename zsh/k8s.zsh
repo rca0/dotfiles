@@ -26,3 +26,8 @@ alias kgep="kubectl get endpoints "
 
 alias kd="kubectl describe"
 alias kdp="kubectl describe pods $pod"
+
+alias kds="kubcetl-secrets"
+function kubcetl-secrets() {
+  kubectl get secrets $@ -ojson | jq '{name: .metadata.name, data: .data | map_values(@base64d)}'
+}
