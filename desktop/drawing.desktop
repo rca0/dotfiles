@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Name=Drawing
+Exec=/var/lib/snapd/snap/bin/drawing --profile-directory=Default --app-id=drawing
+Icon=/home/ruan.arcega/.local/share/icons/drawing.png
