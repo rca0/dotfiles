@@ -20,7 +20,7 @@ function _setup_linux() {
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
   sudo dnf check-update
-  sudo dnf install $(cat rpm)
+  sudo dnf install $(cat rpm) -y
   if [ ! -d $HOME/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
@@ -94,6 +94,12 @@ function _setup_zsh() {
   sudo dnf install https://github.com/getantibody/antibody/releases/download/v6.1.1/antibody_6.1.1_linux_amd64.rpm
 }
 
+function _setup_kind() {
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$(go env GOPATH)/bin
+  GO111MODULE="on" go get sigs.k8s.io/kind@v0.11.1 && kind create cluster
+}
+
 if test "$(uname)" = "Darwin"; then
   _setup_darwin
   
@@ -103,5 +109,6 @@ fi
 
 _setup_zsh
 _setup_asdf
+_setup_kind
 
 exit 0
