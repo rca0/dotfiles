@@ -17,6 +17,7 @@ export FZF_BASE="$HOME/.fzf"
 export PATH="$PATH:$HOME/.git"
 
 # golang
+export GOPATH=$HOME/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Set name of the theme to load --- if set to "random", it will

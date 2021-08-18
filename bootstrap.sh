@@ -29,6 +29,9 @@ function _setup_linux() {
   wget -O ~/franz/Franz.AppImage https://github.com/meetfranz/franz/releases/download/v5.7.0/Franz-5.7.0.AppImage
   chmod +x ~/franz/Franz.AppImage
 
+  # golang dir
+  mkdir -p $HOME/go
+
   if test "$(which docker)"; then
     sudo groupadd docker
     sudo usermod -aG docker $USER
