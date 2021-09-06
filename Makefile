@@ -1,15 +1,19 @@
-init:
-	./bootstrap.sh
 .PHONY: init
+init: 
+	@echo "-> init start bootstrap script"
+	@bash -c ./bootstrap.sh
 
-bundle:
-	brew bundle
 .PHONY: bundle
+bundle:
+	@echo "-> bundle"
+	@bash -c brew bundle
 
-dump:
-	brew bundle dump --force
 .PHONY: dump
+dump:
+	@echo "-> dump"
+	@bash -c brew bundle dump --force
 
-update:
-	brew update
 .PHONY: update
+update:
+	@echo "-> update"
+	@bash -c brew update
