@@ -6,7 +6,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 function _setup_darwin() {
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo "~> homebrew"
   brew tap Homebrew/bundle
 }
@@ -79,7 +79,7 @@ function _setup_asdf() {
 }
 
 function _setup_zsh() {
-  echo "~> zsh\n"
+  echo -e "~> zsh\n"
   mkdir -p $HOME/.zsh
   cp -R zsh/{*.zsh,plugins} $HOME/.zsh/
   cp -R zsh/zshrc $HOME/.zshrc
