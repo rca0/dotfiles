@@ -79,7 +79,7 @@ function _setup_asdf() {
 }
 
 function _setup_zsh() {
-  echo "~> zsh\n"
+  echo -e "~> zsh\n"
   mkdir -p $HOME/.zsh
   cp -R zsh/{*.zsh,plugins} $HOME/.zsh/
   cp -R zsh/zshrc $HOME/.zshrc
