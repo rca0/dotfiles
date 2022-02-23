@@ -6,7 +6,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 function _setup_darwin() {
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo "~> homebrew"
   brew tap Homebrew/bundle
 }
