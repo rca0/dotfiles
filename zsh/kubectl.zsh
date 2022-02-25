@@ -91,5 +91,15 @@ function _zsh_kubectl_prompt_precmd() {
     zstyle -s ':zsh-kubectl-prompt:' separator separator
     ZSH_KUBECTL_PROMPT="${preprompt}${context}${separator}${ns}${postprompt}"
 
+    if grep -q "prod" <<< "${context}"; then
+      RPROMPT='%{$fg[red]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+    fi
+    if grep -q "staging" <<< "${context}"; then
+      RPROMPT='%{$fg[yellow]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+    fi
+    if grep -q "dev" <<< "${context}"; then
+      RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+    fi  
+
     return 0
 }
