@@ -5,6 +5,8 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+ASDF_VERSION="v0.10.2"
+
 function _setup_darwin() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo "~> homebrew"
@@ -70,7 +72,7 @@ function _setup_asdf() {
   # shellcheck disable=SC1090
   source "$asd_path" || {
     echo "~~> Installing asdf"
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch "v0.8.1"
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch "${ASDF_VERSION}"
     echo -e "\n source $asd_path" >>"$HOME"/.bashrc
     test -f "$HOME"/.zshrc &&
       echo -e "\n source $asd_path" >>"$HOME"/.zshrc
