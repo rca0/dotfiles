@@ -93,13 +93,11 @@ function _setup_zsh() {
   cp -R git/.gitconfig.lib $HOME/.gitconfig.lib
 
   echo "~> antibody plugin"
-  sudo dnf install https://github.com/getantibody/antibody/releases/download/v6.1.1/antibody_6.1.1_linux_amd64.rpm
-}
-
-function _setup_kind() {
-  export GOPATH=$HOME/go
-  export PATH=$PATH:$(go env GOPATH)/bin
-  GO111MODULE="on" go get sigs.k8s.io/kind@v0.11.1 && kind create cluster
+  if test "$(uname)" = "Darwin"; then
+    brew install antibody
+  else 
+    sudo dnf install https://github.com/getantibody/antibody/releases/download/v6.1.1/antibody_6.1.1_linux_amd64.rpm
+  fi
 }
 
 if test "$(uname)" = "Darwin"; then
@@ -111,6 +109,5 @@ fi
 
 _setup_zsh
 _setup_asdf
-_setup_kind
 
 exit 0
