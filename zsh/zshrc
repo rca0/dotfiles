@@ -25,7 +25,7 @@ export PATH=$PATH:/usr/local/go/bin
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-plugins=(git, fzf)
+plugins=(fzf)
 
 source $ZSH/oh-my-zsh.sh
 
