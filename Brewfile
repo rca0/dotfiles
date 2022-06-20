@@ -27,7 +27,7 @@ brew "bc"
 brew "bison"
 brew "cocoapods"
 brew "curl"
-brew "docker", link: false
+brew "docker"
 brew "docker-machine"
 brew "eksctl"
 brew "erlang"
