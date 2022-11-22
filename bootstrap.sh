@@ -8,7 +8,7 @@ export LANG=en_US.UTF-8
 ASDF_VERSION="v0.10.2"
 
 function _setup_darwin() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo "~> homebrew"
   brew tap Homebrew/bundle
 }
