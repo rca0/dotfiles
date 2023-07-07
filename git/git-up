@@ -20,6 +20,9 @@ function pull_changes {
     git pull --prune --rebase
     if [ $upstream -eq 1 ]; then
         git fetch upstream
+	if [ "$(git rev-parse --abbrev-ref HEAD)" == "main"]; then
+	    git merge --ff-only upstream/main
+	fi
         if [ "$(git rev-parse --abbrev-ref HEAD)" == "master" ]; then
             git merge --ff-only upstream/master
         fi
