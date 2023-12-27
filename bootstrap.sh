@@ -85,6 +85,7 @@ function _setup_zsh() {
   mkdir -p $HOME/.zsh
   cp -R zsh/{*.zsh,plugins} $HOME/.zsh/
   cp -R zsh/zshrc $HOME/.zshrc
+  mv $HOME/.zsh/plugins $HOME/.zsh_plugins.txt
 
   echo "~> git"
   mkdir -p $HOME/.git
