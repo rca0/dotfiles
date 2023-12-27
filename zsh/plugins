@@ -1,9 +1,13 @@
-#!/bin/bash
+rupa/z              # some bash plugins work too
+sindresorhus/pure   # enhance your prompt
 
-antibody bundle TBSliver/zsh-theme-steeef
-antibody bundle zsh-users/zsh-completions
+# you can even use Oh My Zsh plugins
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/extract
 
-# **MUST** be the last plugins
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-history-substring-search
+antidote install TBSliver/zsh-theme-steeef
+antidote install zsh-users/zsh-completions
+
+antidote install zsh-users/zsh-autosuggestions
+antidote install zsh-users/zsh-syntax-highlighting
+antidote install zsh-users/zsh-history-substring-search
