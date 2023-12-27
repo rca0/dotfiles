@@ -32,9 +32,12 @@ source $ZSH/oh-my-zsh.sh
 
 autoload -U colors; colors
 
-# load antibody plugins
-source <(antibody init)
-source $HOME/.zsh/plugins
+# Lazy-load antidote.
+fpath+=(${ZDOTDIR:-~}/.antidote)
+autoload -Uz $fpath[-1]/antidote
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
 
 typeset -U config_files
 config_files=($HOME/.zsh/*.zsh)
@@ -60,3 +63,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=/opt/homebrew/bin:/Users/ruanarcega/.asdf/shims:/Users/ruanarcega/.asdf/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/ruanarcega/.git:/bin:/Users/ruanarcega/.go/bin:/opt/homebrew/opt/fzf/bin:/Users/ruanarcega/.rvm/bin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
