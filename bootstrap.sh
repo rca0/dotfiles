@@ -92,12 +92,8 @@ function _setup_zsh() {
   cp -R git/.gitconfig $HOME/.gitconfig
   cp -R git/.gitconfig.lib $HOME/.gitconfig.lib
 
-  echo "~> antibody plugin"
-  if test "$(uname)" = "Darwin"; then
-    brew install antibody
-  else 
-    sudo dnf install https://github.com/getantibody/antibody/releases/download/v6.1.1/antibody_6.1.1_linux_amd64.rpm
-  fi
+  echo "~> antidote plugin"
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 }
 
 if test "$(uname)" = "Darwin"; then
